@@ -1,8 +1,11 @@
+using BooksApiMongoDb.Data.Configuration;
+using BooksApiMongoDb.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace Books.Api.MongoDb
@@ -18,6 +21,13 @@ namespace Books.Api.MongoDb
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<BooksDatabaseSettings>(
+                Configuration.GetSection(nameof(BooksDatabaseSettings)));
+
+            services.AddSingleton<IBooksDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<BooksDatabaseSettings>>().Value);
+
+            services.AddSingleton<IBookService, BookService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
