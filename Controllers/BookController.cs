@@ -34,7 +34,7 @@ namespace BooksApiMongoDb.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Book> Create(BookInput book)
+        public ActionResult<Book> Create(ViewBook book)
         {
             var bookCreated = _bookService.Create(book);
 
@@ -42,7 +42,7 @@ namespace BooksApiMongoDb.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, BookInput bookIn)
+        public IActionResult Update(string id, ViewBook bookIn)
         {
             var book = _bookService.Get(id);
 

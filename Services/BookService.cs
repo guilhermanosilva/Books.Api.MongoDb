@@ -1,28 +1,28 @@
 using System.Collections.Generic;
-using BooksApiMongoDb.Data.Configuration;
 using BooksApiMongoDb.Models;
-using MongoDB.Driver;
+using BooksApiMongoDb.Repositories;
 
 namespace BooksApiMongoDb.Services
 {
     public class BookService : IBookService
     {
-        private readonly IMongoCollection<Book> _books;
-
-        public BookService(IBooksDatabaseSettings settings)
+        private readonly IMongoRepository _repository;
+        
+        public BookService(IMongoRepository repository)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
-            _books = database.GetCollection<Book>(settings.BooksCollectionName);
+            _repository = repository;
         }
 
         public List<Book> Get() =>
-            _books.Find(book => true).ToList();
+            _repository.Get(); 
+            // .Find(book => true).ToList();
 
         public Book Get(string id) =>
-            _books.Find<Book>(book => book.Id == id).FirstOrDefault();
+            _repository.Get(id);
+            // _books.Find<Book>(book => book.Id == id).FirstOrDefault();
 
-        public Book Create(BookInput bookIn)
+
+        public Book Create(ViewBook bookIn)
         {
             var book = new Book{
                 Author = bookIn.Author,
@@ -33,11 +33,12 @@ namespace BooksApiMongoDb.Services
                 Language = bookIn.Language,
                 Price = bookIn.Price
             };
-            _books.InsertOne(book);
+            _repository.Create(book);
+            // _books.InsertOne(book);
             return book;
         }
 
-        public void Update(string id, BookInput bookIn)
+        public void Update(string id, ViewBook bookIn)
         {
             var bookUpdated = new Book{
                 Id = id,
@@ -50,14 +51,16 @@ namespace BooksApiMongoDb.Services
                 Price = bookIn.Price
             };
 
-
-            _books.ReplaceOne(book => book.Id == id, bookUpdated);
+            _repository.Update(id, bookUpdated);
+            // _books.ReplaceOne(book => book.Id == id, bookUpdated);
         }
 
         public void Remove(Book bookIn) =>
-            _books.DeleteOne(book => book.Id == bookIn.Id);
+            _repository.Remove(bookIn);
+            // _books.DeleteOne(book => book.Id == bookIn.Id);
 
         public void Remove(string id) =>
-            _books.DeleteOne(book => book.Id == id);
+            _repository.Remove(id);
+            // _books.DeleteOne(book => book.Id == id);
     }
 }

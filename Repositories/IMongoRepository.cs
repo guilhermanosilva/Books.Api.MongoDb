@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using BooksApiMongoDb.Models;
 
-namespace BooksApiMongoDb.Services
+namespace BooksApiMongoDb.Repositories
 {
-    public interface IBookService
+    public interface IMongoRepository
     {
         List<Book> Get();
         Book Get(string id);
-        Book Create(ViewBook book);
-        void Update(string id, ViewBook bookIn);
+        Book Create(Book book);
+        void Update(string id, Book bookIn);
         void Remove(Book bookIn);
         void Remove(string id);
     }

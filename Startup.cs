@@ -1,4 +1,5 @@
 using BooksApiMongoDb.Data.Configuration;
+using BooksApiMongoDb.Repositories;
 using BooksApiMongoDb.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,7 @@ namespace Books.Api.MongoDb
             services.AddSingleton<IBooksDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<BooksDatabaseSettings>>().Value);
 
+            services.AddSingleton<IMongoRepository, MongoRepository>();
             services.AddSingleton<IBookService, BookService>();
 
             services.AddControllers();

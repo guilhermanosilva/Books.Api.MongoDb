@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BooksApiMongoDb.Models
 {
-    public class BookInput
+    public class ViewBook
     {
         [Required]
         public string BookName { get; set; }
