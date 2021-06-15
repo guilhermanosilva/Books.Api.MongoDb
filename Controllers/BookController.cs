@@ -34,15 +34,15 @@ namespace BooksApiMongoDb.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Book> Create(Book book)
+        public ActionResult<Book> Create(BookInput book)
         {
-            _bookService.Create(book);
+            var bookCreated = _bookService.Create(book);
 
-            return CreatedAtRoute("GetBook", new { id = book.Id.ToString() }, book);
+            return Ok(bookCreated);
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, Book bookIn)
+        public IActionResult Update(string id, BookInput bookIn)
         {
             var book = _bookService.Get(id);
 

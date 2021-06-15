@@ -22,14 +22,37 @@ namespace BooksApiMongoDb.Services
         public Book Get(string id) =>
             _books.Find<Book>(book => book.Id == id).FirstOrDefault();
 
-        public Book Create(Book book)
+        public Book Create(BookInput bookIn)
         {
+            var book = new Book{
+                Author = bookIn.Author,
+                BookName = bookIn.BookName,
+                Dimensions = bookIn.Dimensions,
+                Editor = bookIn.Editor,
+                ISBN = bookIn.ISBN,
+                Language = bookIn.Language,
+                Price = bookIn.Price
+            };
             _books.InsertOne(book);
             return book;
         }
 
-        public void Update(string id, Book bookIn) =>
-            _books.ReplaceOne(book => book.Id == id, bookIn);
+        public void Update(string id, BookInput bookIn)
+        {
+            var bookUpdated = new Book{
+                Id = id,
+                Author = bookIn.Author,
+                BookName = bookIn.BookName,
+                Dimensions = bookIn.Dimensions,
+                Editor = bookIn.Editor,
+                ISBN = bookIn.ISBN,
+                Language = bookIn.Language,
+                Price = bookIn.Price
+            };
+
+
+            _books.ReplaceOne(book => book.Id == id, bookUpdated);
+        }
 
         public void Remove(Book bookIn) =>
             _books.DeleteOne(book => book.Id == bookIn.Id);

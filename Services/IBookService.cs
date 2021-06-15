@@ -7,8 +7,8 @@ namespace BooksApiMongoDb.Services
     {
         List<Book> Get();
         Book Get(string id);
-        Book Create(Book book);
-        void Update(string id, Book bookIn);
+        Book Create(BookInput book);
+        void Update(string id, BookInput bookIn);
         void Remove(Book bookIn);
         void Remove(string id);
     }

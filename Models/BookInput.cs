@@ -15,7 +15,8 @@ namespace BooksApiMongoDb.Models
         public string Language { get; set; }
 
         [Required]
-        [Range(10, 13, ErrorMessage = "ISBN must be between 10 and 13")]
+        // [Range(10, 13, ErrorMessage = "ISBN must be between 10 and 13")]
+        [StringLength(14,MinimumLength=10, ErrorMessage = "ISBN must be between 10 and 13")]
         public string ISBN { get; set; }
         
         public string Dimensions { get; set; }
