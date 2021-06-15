@@ -31,7 +31,9 @@ namespace Books.Api.MongoDb
             services.AddSingleton<IMongoRepository, MongoRepository>();
             services.AddSingleton<IBookService, BookService>();
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options => options.UseMemberCasing());
+                
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Books Api", Version = "v1" });
