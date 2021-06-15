@@ -21,7 +21,7 @@ namespace BooksApiMongoDb.Controllers
         public ActionResult<List<Book>> Get() =>
             _bookService.Get();
 
-        [HttpGet("{id:length(24)}", Name = "GetBook")]
+        [HttpGet("{id:length(24)}")]
         public ActionResult<Book> Get(string id)
         {
             var book = _bookService.Get(id);
@@ -39,7 +39,7 @@ namespace BooksApiMongoDb.Controllers
         {
             var bookCreated = _bookService.Create(book);
 
-            return Ok(bookCreated);
+            return CreatedAtAction(nameof(Get), new { id = bookCreated.Id.ToString() }, bookCreated);
         }
 
         [HttpPut("{id:length(24)}")]
