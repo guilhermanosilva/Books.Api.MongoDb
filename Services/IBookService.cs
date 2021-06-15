@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BooksApiMongoDb.Entities;
 using BooksApiMongoDb.Models;
 
 namespace BooksApiMongoDb.Services

@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace BooksApiMongoDb.Models
+namespace BooksApiMongoDb.Entities
 {
     public class Book
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using BooksApiMongoDb.Data.Configuration;
-using BooksApiMongoDb.Models;
+using BooksApiMongoDb.Entities;
 using MongoDB.Driver;
 
 namespace BooksApiMongoDb.Repositories

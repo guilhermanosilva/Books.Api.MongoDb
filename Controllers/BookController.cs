@@ -1,3 +1,4 @@
+using BooksApiMongoDb.Entities;
 using BooksApiMongoDb.Models;
 using BooksApiMongoDb.Services;
 using Microsoft.AspNetCore.Mvc;
