@@ -37,6 +37,13 @@ namespace BooksApiMongoDb.Repositories
             _books.ReplaceOne(book => book.Id == id, book);
             
         }
+
+        public void UpdatePrice(string id, decimal price)
+        {
+            _books.FindOneAndUpdate(book => book.Id == id, 
+                Builders<Book>.Update.Set(book => book.Price, price));
+        }
+
         public void Remove(Book book)
         {
             _books.DeleteOne(b => b.Id == book.Id);
@@ -46,6 +53,5 @@ namespace BooksApiMongoDb.Repositories
         {
             _books.DeleteOne(b => b.Id == id);
         }
-
     }
 }

@@ -81,6 +81,28 @@ namespace BooksApiMongoDb.Controllers
             return NoContent();
         }
 
+        /// <summary>Update price</summary>
+        /// <param name="id">String id with 24 digits</param>
+        /// <param name="price">New price</param>
+        /// <response code="204">Successfully updated</response>
+        /// <response code="404">Not found a book for the id passed</response> 
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpPatch("{id:length(24)}")]
+        public IActionResult UpdatePrice(string id, decimal price)
+        {
+            var book = _bookService.Get(id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            _bookService.UpdatePrice(id, price);
+
+            return NoContent();
+        }
+
         /// <summary>Delete book by Id</summary>
         /// <param name="id">String id with 24 digits</param>
         /// <response code="204">Successfully deleted</response>

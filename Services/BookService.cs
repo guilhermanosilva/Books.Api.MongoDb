@@ -51,6 +51,11 @@ namespace BooksApiMongoDb.Services
             _repository.Update(id, bookUpdated);
         }
 
+        public void UpdatePrice(string id, decimal price)
+        {
+            _repository.UpdatePrice(id, price);
+        }
+
         public void Remove(Book bookIn) =>
             _repository.Remove(bookIn);
 

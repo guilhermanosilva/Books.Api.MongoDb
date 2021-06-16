@@ -11,5 +11,6 @@ namespace BooksApiMongoDb.Repositories
         void Update(string id, Book bookIn);
         void Remove(Book bookIn);
         void Remove(string id);
+        void UpdatePrice(string id, decimal price);
     }
 }
