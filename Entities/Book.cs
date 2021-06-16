@@ -9,8 +9,7 @@ namespace BooksApiMongoDb.Entities
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-
-        [JsonProperty("Title")]
+        
         public string BookName { get; set; }
 
         public string Author { get; set; }
