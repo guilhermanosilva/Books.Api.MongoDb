@@ -10,7 +10,8 @@ Api de cadastro de livros desenvolvida com ASP.NET Core 5.0 e MongoDb Atlas.
 ## Motivação
 Lendo a página da [documentação](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-5.0&tabs=visual-studio) oficial da Microsoft sobre o desenvolvimento de uma API com ASP.NET e MongoDB eu desenvolvi a base desse projeto, mas pensei que poderia melhorá-la e inserir alguns padrões de projetos assim como deixar um pouco mais completa.
 
-![endpoints image](./images/api-1.png)
+<img src="./images/api-1.png" width="800px" />
+
 ## Foi adicionado ao projeto:
  * Camada de Entidades;
  * Mais campos no modelo de entidade *Book* para deixá-lo mais completo de informações;
